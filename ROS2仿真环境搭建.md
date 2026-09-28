@@ -15,12 +15,15 @@ sudo ubuntu-drivers install
 ## 三、安装docker
 
 ```sh
-sudo apt install -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin
+sudo curl -fsSL https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+```sh
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ## 四、NVIDIA Container Toolkit
@@ -269,9 +272,7 @@ CMD ["/bin/bash"]
 FROM nvidia/cuda:12.6.3-devel-ubuntu22.04
 ```
 
-说明 CUDA 只存在于镜像内部。
-
----
+说明 CUDA 只存在于镜像内部
 
 ### 创建 `.env`
 
