@@ -1,0 +1,9 @@
+# 忽略当前工作区临时状态与缓存（必填）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/graph.json
+
+# 忽略系统自动生成的垃圾文件
+.DS_Store
+Thumbs.db
