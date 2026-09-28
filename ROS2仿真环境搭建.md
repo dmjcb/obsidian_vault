@@ -452,13 +452,7 @@ compute,utility,graphics,display
 
 ### 构建 ROS Docker 镜像
 
-现在：
-
-```
-cd ~/robotics/go2_docker
-```
-
-执行：
+现在`~/robotics/go2_docker` 执行
 
 ```
 sudo docker compose build
@@ -473,11 +467,9 @@ ROS
 Gazebo
 ```
 
-体积比较大，这是正常的。
+体积比较大，这是正常的
 
-查看：
-
-```
+```sh
 sudo docker images
 ```
 
@@ -503,17 +495,10 @@ ros2 run demo_nodes_cpp talker
 
 ## 下载项目
 
-进入：
+进入`/workspace/ws/src`
 
-```
-cd /workspace/ws/src
-```
-
-执行：
-
-```
-git clone \
-https://github.com/anujjain-dev/unitree-go2-ros2.git
+```sh
+git clone https://github.com/anujjain-dev/unitree-go2-ros2.git
 ```
 
 项目目前明确提供 ROS2 Humble 下的：
@@ -527,39 +512,20 @@ teleop
 IMU
 2D LiDAR
 Velodyne
-``` :chatgpt-content-reference{index="13"}
-
-
-看一下：
-
-```bash
-ls
 ````
 
----
-
-# 二十九、rosdep 是什么
+#### rosdep 是什么
 
 现在执行：
 
-```
+```sh
 rosdep update
 ```
 
-然后：
+然后`/workspace/ws`执行
 
-```
-cd /workspace/ws
-```
-
-执行：
-
-```
-rosdep install \
-    --from-paths src \
-    --ignore-src \
-    -r \
-    -y
+```sh
+rosdep install --from-paths src --ignore-src -r -y
 ```
 
 你以后会经常看到这个命令。
@@ -584,19 +550,11 @@ rosdep install \
 sudo apt
 ```
 
-只发生在：
-
-```
-Docker
-```
-
-里面。
+只发生在Docker里面
 
 不会污染宿主机。
 
----
-
-# 三十、理解 ROS2 Workspace
+## 理解 ROS2 Workspace
 
 现在目录类似：
 
@@ -624,17 +582,17 @@ launch
 yaml
 ```
 
-### build
+ - build
 
-编译临时文件。
+编译临时文件
 
-### install
+-  install
 
-最终 ROS 包环境。
+最终 ROS 包环境
 
-### log
+- log
 
-编译日志。
+编译日志
 
 以后开发你主要改：
 
@@ -658,7 +616,7 @@ docker rm ...
 
 ---
 
-# 三十一、编译 Go2
+### 编译 Go2
 
 ```
 cd /workspace/ws
@@ -676,27 +634,7 @@ source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 ```
 
-如果机器 CPU 核很多，但不希望影响别人，可以限制并发：
-
-```
-colcon build \
-    --symlink-install \
-    --parallel-workers 4
-```
-
-我在多用户机器上更推荐这个。
-
-不要：
-
-```
-make -j$(nproc)
-```
-
-把全部 CPU 核占满。
-
----
-
-# 三十二、加载工作空间
+### 加载工作空间
 
 编译后：
 
@@ -712,9 +650,7 @@ ros2 pkg list | grep go2
 
 应该能发现 Go2 package。
 
----
-
-# 三十三、第一次启动 Go2 Gazebo
+### 第一次启动 Go2 Gazebo
 
 按照该项目当前文档：
 
@@ -730,11 +666,9 @@ ros2 launch go2_config gazebo.launch.py
 Unitree Go2
 ```
 
-该仓库明确说明这个 demo 不需要真实机器人。[GitHub](https://github.com/anujjain-dev/unitree-go2-ros2?utm_source=chatgpt.com)
+该仓库明确说明这个 demo 不需要真实机器人
 
----
-
-# 三十四、Gazebo + RViz 一起运行
+### Gazebo + RViz 一起运行
 
 ```
 ros2 launch go2_config gazebo.launch.py rviz:=true
@@ -754,9 +688,7 @@ Go2
 
 到这一步你的第一阶段环境基本完成。
 
----
-
-# 三十五、控制 Go2 行走
+### 控制 Go2 行走
 
 新开一个终端：
 
