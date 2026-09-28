@@ -25,6 +25,22 @@ sudo apt install -y \
 
 ## 四、NVIDIA Container Toolkit
 
+目标
+
+```
+Ubuntu
+    ↓
+NVIDIA Driver
+    ↓
+NVIDIA Container Toolkit
+    ↓
+Docker
+    ↓
+RTX 3060
+```
+
+安装
+
 ```sh
 sudo apt-get update
 
@@ -60,4 +76,42 @@ sudo nvidia-ctk runtime configure --runtime=docker
 
 ```sh
 sudo systemctl restart docker
+```
+
+检查
+
+```sh
+sudo docker info | grep -i runtime
+```
+
+应该出现
+
+```sh
+ Runtimes: runc io.containerd.runc.v2 nvidia
+
+ Default Runtime: runc
+```
+
+#### 验证 Docker GPU
+
+```sh
+sudo docker run --rm --gpus all ubuntu:22.04 nvidia-smi
+```
+
+## 五、ROS 2 + Go2 推荐方案
+
+```
+Go2
+ ↓
+ROS2
+ ↓
+Gazebo
+ ↓
+LiDAR / IMU
+ ↓
+SLAM
+ ↓
+Nav2
+ ↓
+自主导航
 ```
